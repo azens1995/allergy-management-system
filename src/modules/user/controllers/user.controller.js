@@ -28,11 +28,11 @@ const loginUser = async (req, res) => {
       data: response,
       message: message.LOGIN_SUCCESS,
     });
-  } catch (e) {
-    logger.error(e);
+  } catch (err) {
+    logger.error(err);
     return res
       .status(status.BAD_REQUEST)
-      .json({ status: status.BAD_REQUEST, data: null, message: e.message });
+      .json({ status: status.BAD_REQUEST, data: null, message: err.message });
   }
 };
 
@@ -48,7 +48,7 @@ const refreshToken = async (req, res) => {
     logger.error(err);
     return res
       .status(status.BAD_REQUEST)
-      .json({ status: status.BAD_REQUEST, data: null, message: e.message });
+      .json({ status: status.BAD_REQUEST, data: null, message: err.message });
   }
 };
 
