@@ -8,11 +8,12 @@
     "port": 5432
   },
   "test": {
-    "username": "root",
+    "username": "postgres",
     "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": "ams_test",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5432
   },
   "production": {
     "username": "root",
