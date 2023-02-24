@@ -3,14 +3,8 @@ const logger = require('../../../utils/logger');
 const { COLUMNS, SORT_ORDER } = require('../utils/queryParam');
 
 class AllergyRepository {
-  db = {};
-
   constructor() {
     this.db = connect();
-    // For Development
-    this.db.sequelize.sync({ force: false }).then(() => {
-      console.log('Drop and re-sync db.');
-    });
   }
 
   // Retrieve all allergy

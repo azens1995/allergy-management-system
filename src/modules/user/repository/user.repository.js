@@ -2,14 +2,8 @@ const { connect } = require('../../../config/db.config');
 const logger = require('../../../utils/logger');
 
 class UserRepository {
-  db = {};
-
   constructor() {
     this.db = connect();
-    // For Development
-    this.db.sequelize.sync({ force: false }).then(() => {
-      console.log('Drop and re-sync db.');
-    });
   }
 
   // Create user
@@ -39,7 +33,10 @@ class UserRepository {
   async findUserByEmail(email) {
     try {
       const user = await this.db.user.findOne({ where: { email: email } });
-      return user?.dataValues;
+      if (user) {
+        return user.dataValues;
+      }
+      return null;
     } catch (err) {
       logger.error(err);
       throw err;
