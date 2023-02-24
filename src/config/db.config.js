@@ -33,11 +33,6 @@ const connect = () => {
     DataTypes,
     Model
   );
-  db.token = require('../modules/user/models/token.model')(
-    sequelize,
-    DataTypes,
-    Model
-  );
 
   return db;
 };
