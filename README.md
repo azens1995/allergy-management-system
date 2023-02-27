@@ -15,8 +15,10 @@ To run this application, follow the following steps.
 1. Clone the repository from this [link](https://github.com/azens1995/ams-backend.git)
 2. After cloning the repository, open the repository in your any favorite code editor (VS Code).
 3. Install the dependencies by running the command `npm install`. This will install all the required dependencies.
-4. Make sure you have installed the Postgre Database in your local machine. Table creation will be automatic once the application is run, by sequelize.
-5. Run the application with command `npm run dev`.
+4. Make sure you have installed the Postgres Database in your local machine. Table creation will be automatic once the application is run, by sequelize.
+5. Create a database of your choice.
+6. Create and update the `.env` file based on the required configurations
+7. Run the application with command `npm run dev`.
 
 ### Features
 
@@ -25,8 +27,17 @@ For registration, simple email, password along with first name and last name is 
 After registration, user can use the registered email and password to login into the system.
 JWT token is being used for authentication purpose.
 
-1. Registration / Login
-2. CRUD for Allergy
+- [x] Registration
+- [x] Login
+- [x] Refresh Token
+- [x] Create, Update, Delete Allergy
+- [x] Upload image
+- [ ] Unit tests
+- [ ] Swagger Integrations
+
+### Postman Link
+
+Here's the postman link for the available [endpoints](https://www.postman.com/bold-star-49258/workspace/ams/collection/2611707-060428f4-6fd0-4cb5-b0e3-af2c6e1d8160?action=share&creator=2611707)
 
 ### Migrations
 
