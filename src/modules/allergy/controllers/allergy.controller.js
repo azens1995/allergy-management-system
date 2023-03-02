@@ -46,7 +46,13 @@ const getAllergyById = async (req, res) => {
 const createAllergy = async (req, res) => {
   try {
     logger.info('Create Allergy');
+    const file = req.files?.image;
     const allergyRes = await allergyService.createAllergy(req.body);
+    if (file) {
+      const { dataValues } = allergyRes;
+      const { url } = await uploadFile(dataValues.id, file);
+      await allergyService.updateImageInAllergy(dataValues.id, url);
+    }
     return res.status(status.CREATED).json({
       status: status.CREATED,
       data: allergyRes,
@@ -65,8 +71,14 @@ const createAllergy = async (req, res) => {
 const updateAllergy = async (req, res) => {
   try {
     const id = req.params.allergyId;
+    logger.info(`Update Allergy for ${id}`);
+    const file = req.files?.image;
     const allergyToUpdate = req.body;
     const data = await allergyService.updateAllergy(id, allergyToUpdate);
+    if (file) {
+      const { url } = await uploadFile(id, file);
+      await allergyService.updateImageInAllergy(id, url);
+    }
     return res.status(status.SUCCESS).json({
       status: status.SUCCESS,
       data: data,

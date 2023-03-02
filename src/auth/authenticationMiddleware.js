@@ -18,7 +18,6 @@ const auth = (req, res, next) => {
     // separate the bearer and token
     const token = authHeader.split(' ')[1];
     jwt.verify(token, accessTokenSecret, (err, tokenDetails) => {
-      console.log(tokenDetails);
       if (err) {
         return res.status(status.UNAUTHORIZED).json({
           status: status.UNAUTHORIZED,
