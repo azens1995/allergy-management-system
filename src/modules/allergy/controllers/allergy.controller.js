@@ -115,17 +115,16 @@ const uploadAllergyImage = async (req, res) => {
     if (!isImage(file.mimetype)) {
       throw new Error(errors.VALID_IMAGE);
     }
-    const { original_filename, url } = await uploadFile(allergyId, file);
+    const { original_filename, url, format } = await uploadFile(
+      allergyId,
+      file
+    );
     //TODO: Save the uploaded file data to the new database table for retrieval
     await allergyService.updateImageInAllergy(allergyId, url);
     return res.status(status.SUCCESS).json({
       status: status.SUCCESS,
       data: null,
-      message:
-        'File uploaded successfully ' +
-        original_filename +
-        '.' +
-        uploadResponse.format,
+      message: `File uploaded successfully for ID ${allergyId} ${original_filename}.${format}`,
     });
   } catch (err) {
     logger.error(err);

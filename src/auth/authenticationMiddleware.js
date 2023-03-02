@@ -1,4 +1,4 @@
-const logger = require('./logger');
+const logger = require('../utils/logger');
 const jwt = require('jsonwebtoken');
 const { status } = require('../constants/httpCode');
 
@@ -9,7 +9,11 @@ const auth = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-      throw new Error('Invalid request');
+      return res.status(status.UNAUTHORIZED).json({
+        status: status.UNAUTHORIZED,
+        data: null,
+        message: err.message,
+      });
     }
     // separate the bearer and token
     const token = authHeader.split(' ')[1];
